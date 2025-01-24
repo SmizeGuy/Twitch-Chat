@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WoW Themed Chat Overlay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> <!-- Example font -->
+  <style>
+    /* Include the CSS inside the <style> tag or link to an external stylesheet */
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+    }
+    .chat-container {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      max-width: 600px;
+      height: 70%;
+      background: url('https://example.com/wow-background.jpg') repeat;
+      border-radius: 12px;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    .chat-message {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      color: white;
+      padding: 5px;
+      margin: 5px 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+    .chat-message img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+    .chat-message span.username {
+      font-weight: 700;
+      color: #FFD700; /* WoW gold color */
+    }
+    .chat-message span.message {
+      color: #ffffff;
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container" id="chat-container">
+    <!-- This is where chat messages will appear -->
+  </div>
+
+  <script>
+    // Add a basic function to add chat messages dynamically
+    const chatContainer = document.getElementById("chat-container");
+
+    function addMessage(username, message, iconUrl) {
+      const messageElement = document.createElement("div");
+      messageElement.classList.add("chat-message");
+      messageElement.innerHTML = `
+        <img src="${iconUrl}" alt="icon">
+        <span class="username">${username}:</span>
+        <span class="message">${message}</span>
+      `;
+      chatContainer.appendChild(messageElement);
+
+      // Remove the message after 5 seconds
+      setTimeout(() => {
+        messageElement.remove();
+      }, 5000);
+    }
+
+    // Simulate incoming chat messages (replace this with actual Twitch data or chat events)
+    setInterval(() => {
+      addMessage('User1', 'This is a WoW-themed message!', 'https://example.com/your-icon.png');
+    }, 3000);
+  </script>
+</body>
+</html>
